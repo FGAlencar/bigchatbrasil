@@ -12,6 +12,4 @@ public interface PersistentEntity <K extends Serializable>{
     default  boolean isNew(){
         return this.getId() == null;
     }
-
-    Specification<?> toSpecification();
 }
