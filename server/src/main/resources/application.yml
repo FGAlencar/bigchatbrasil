@@ -1,0 +1,5 @@
+spring:
+  application:
+  name: bigchatbrasil
+servlet:
+  context-path: api
