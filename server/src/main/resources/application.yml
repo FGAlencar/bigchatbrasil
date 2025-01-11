@@ -1,5 +1,25 @@
 spring:
   application:
-  name: bigchatbrasil
-servlet:
-  context-path: api
+    name: bigchatbrasil
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  liquibase:
+    contexts: default
+    clear-checksums: false
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:${random.uuid};DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: admin
+    password: admin
+
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  error:
+    include-stacktrace: never
