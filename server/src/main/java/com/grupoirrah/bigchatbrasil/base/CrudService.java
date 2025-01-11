@@ -4,6 +4,7 @@ package com.grupoirrah.bigchatbrasil.base;
 import com.grupoirrah.bigchatbrasil.base.restexceptions.EntityNotFoundException;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -25,7 +26,7 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
     }
 
     public Page<E> findAll(E entity, Pageable pageable){
-        return this.repository.findAll((Specification<E>) entity.toSpecification(), pageable);
+        return this.repository.findAll(Example.of(entity), pageable);
     }
 
     public E save(E entity){
