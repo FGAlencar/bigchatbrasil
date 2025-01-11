@@ -8,11 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class BaseResource <E extends PersistentEntity<ID>, ID extends Serializable>{
+public class CrudController<E extends PersistentEntity<ID>, ID extends Serializable>{
     @Autowired
-    private BaseService<E, ID> service;
+    private CrudService<E, ID> service;
 
     @GetMapping
     public ResponseEntity<Page<E>> readAll(E entity, Pageable pageable){

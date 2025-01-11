@@ -10,10 +10,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.io.Serializable;
 
-public class BaseService<E extends PersistentEntity<ID>, ID extends Serializable> {
+public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable> {
 
     @Autowired
-    private BaseRepository<E, ID> repository;
+    private CrudRepository<E, ID> repository;
 
     @Autowired
     private EntityManager entityManager;
