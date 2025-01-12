@@ -1,6 +1,7 @@
 spring:
   application:
-    name: bigchatbrasil
+    name: Big Chat Brasil
+    version: 1.0.0
   jpa:
     show-sql: false
     hibernate:
