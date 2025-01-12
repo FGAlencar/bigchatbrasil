@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.web.PagedModel;
 
 import java.io.Serializable;
 
@@ -25,8 +25,9 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
                         new EntityNotFoundException("Não encontrado dados para o ID " + id));
     }
 
-    public Page<E> findAll(E entity, Pageable pageable){
-        return this.repository.findAll(Example.of(entity), pageable);
+    public PagedModel<E> findAll(E entity, Pageable pageable){
+        Page<E> page = this.repository.findAll(Example.of(entity), pageable);
+        return new PagedModel<>(page);
     }
 
     public E save(E entity){
@@ -42,6 +43,10 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
     }
 
     public E update(ID id, E entity){
+        boolean exists = this.repository.existsById(id);
+        if(!exists){
+            throw  new RuntimeException("Não encontrado dados para o ID " + id);
+        }
 
         if(!id.equals(entity.getId())){
             throw  new RuntimeException("ID informado não se refere aos dados a serem atualizados");
@@ -72,15 +77,15 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
     //métodos dedicados para services filhas
     public E beforeSave(E entity){return entity;}
 
-    public E afterSave(E entity){return entity;}
+    public void afterSave(E entity){}
 
     public E beforeUpdate(E entity){return entity;}
 
-    public E afterUpdate(E entity){return entity;}
+    public void afterUpdate(E entity){}
 
     public E beforeDelete(E entity){return entity;}
 
-    public E afterDelete(E entity){return entity;}
+    public void afterDelete(E entity){}
 
 
 }
