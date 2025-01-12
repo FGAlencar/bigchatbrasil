@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="criacao-tabela-planoservico" author="felipe.alencar">
+        <preConditions onFail="MARK_RAN" onFailMessage="Tabela planoservico já criada">
+            <not>
+                <tableExists tableName="planoservico"/>
+            </not>
+        </preConditions>
+        <createTable tableName="planoservico">
+            <column name="id" type="NUMERIC" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="nome" type="VARCHAR(100)"/>
+            <column name="descricao" type="VARCHAR(100)"/>
+            <column name="valor" type="NUMERIC(15,2)"/>
+        </createTable>
+        <createTable tableName="planoserviceo_plataformas">
+            <column name="planoservico" type="NUMERIC"/>
+            <column name="plataforma" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

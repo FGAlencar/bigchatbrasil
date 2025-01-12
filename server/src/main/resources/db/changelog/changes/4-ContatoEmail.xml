@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="criacao-tabela-contatoemail" author="felipe.alencar">
+        <preConditions onFail="MARK_RAN" onFailMessage="Tabela contatoemail já criada">
+            <not>
+                <tableExists tableName="contatoemail"/>
+            </not>
+        </preConditions>
+        <createTable tableName="contatoemail">
+            <column name="id" type="NUMERIC" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="pessoa" type="NUMERIC">
+                <constraints foreignKeyName="FK_contatoemail_pessoa" referencedTableName="pessoa" referencedColumnNames="id"/>
+            </column>
+            <column name="email" type="VARCHAR(100)"/>
+            <column name="principal" type="boolean"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

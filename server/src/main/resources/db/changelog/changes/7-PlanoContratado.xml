@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="criacao-tabela-planocontratado" author="felipe.alencar">
+        <preConditions onFail="MARK_RAN" onFailMessage="Tabela planocontratado já criada">
+            <not>
+                <tableExists tableName="planocontratado"/>
+            </not>
+        </preConditions>
+        <createTable tableName="planocontratado">
+            <column name="id" type="NUMERIC" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="plano" type="NUMERIC">
+                <constraints foreignKeyName="FK_planocontratado_plano" referencedTableName="planocontratado" referencedColumnNames="id"/>
+            </column>
+            <column name="valor_utilizado" type="NUMERIC(15,2)"/>
+            <column name="valor_disponivel" type="NUMERIC(15,2)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

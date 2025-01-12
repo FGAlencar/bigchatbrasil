@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="criacao-tabela-planoservicoexecucao" author="felipe.alencar">
+        <preConditions onFail="MARK_RAN" onFailMessage="Tabela planoservicoexecucao já criada">
+            <not>
+                <tableExists tableName="planoservicoexecucao"/>
+            </not>
+        </preConditions>
+        <createTable tableName="planoservicoexecucao">
+            <column name="id" type="NUMERIC" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="planocontratado" type="NUMERIC">
+                <constraints foreignKeyName="FK_planoservicoexecucao_planocontratado" referencedTableName="planocontratado" referencedColumnNames="id"/>
+            </column>
+            <column name="planoservico" type="NUMERIC">
+                <constraints foreignKeyName="FK_planoservicoexecucao_planoservico" referencedTableName="planoservico" referencedColumnNames="id"/>
+            </column>
+            <column name="valor_unitario" type="NUMERIC(15,2)"/>
+            <column name="valor_total" type="NUMERIC(15,2)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

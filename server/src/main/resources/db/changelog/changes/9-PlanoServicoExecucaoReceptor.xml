@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="criacao-tabela-planoservicoexecucaoreceptor" author="felipe.alencar">
+        <preConditions onFail="MARK_RAN" onFailMessage="Tabela planoservicoexecucaoreceptor já criada">
+            <not>
+                <tableExists tableName="planoservicoexecucaoreceptor"/>
+            </not>
+        </preConditions>
+        <createTable tableName="planoservicoexecucaoreceptor">
+            <column name="id" type="NUMERIC" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="planoservicoexecucao" type="NUMERIC">
+                <constraints foreignKeyName="FK_receptor_execucao" referencedTableName="planoservicoexecucao" referencedColumnNames="id"/>
+            </column>
+            <column name="identificacao" type="VARCHAR(100)"/>
+            <column name="ddd" type="VARCHAR(2)"/>
+            <column name="numero" type="VARCHAR(10)"/>
+            <column name="status" type="VARCHAR(10)"/>
+            <column name="mensagem_erro" type="VARCHAR(300)"/>
+        </createTable>
+        <createTable tableName="receptor_plataformas">
+            <column name="receptor" type="NUMERIC"/>
+            <column name="plataforma" type="VARCHAR(50)"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
