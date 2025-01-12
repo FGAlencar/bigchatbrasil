@@ -2,7 +2,7 @@ package com.grupoirrah.bigchatbrasil.contexts.planoservicoexecucao;
 
 import com.grupoirrah.bigchatbrasil.base.CrudService;
 import com.grupoirrah.bigchatbrasil.base.restexceptions.EntityNotFoundException;
-import com.grupoirrah.bigchatbrasil.contexts.planocontratado.PlanoContratado;
+import com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano.PlanoContratado;
 import com.grupoirrah.bigchatbrasil.contexts.planoservico.PlanoServico;
 import com.grupoirrah.bigchatbrasil.contexts.planoservico.PlanoServicoPlataformas;
 import com.grupoirrah.bigchatbrasil.plataformaexecutor.ConnectionExecutionResponse;
