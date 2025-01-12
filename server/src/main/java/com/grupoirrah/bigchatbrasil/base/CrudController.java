@@ -1,8 +1,8 @@
 package com.grupoirrah.bigchatbrasil.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +14,8 @@ public class CrudController<E extends PersistentEntity<ID>, ID extends Serializa
     private CrudService<E, ID> service;
 
     @GetMapping
-    public ResponseEntity<Page<E>> readAll(E entity, Pageable pageable){
-        Page<E> clientes = this.service.findAll(entity, pageable);
+    public ResponseEntity<PagedModel<E>> readAll(E entity, Pageable pageable){
+        PagedModel<E> clientes = this.service.findAll(entity, pageable);
         return ResponseEntity.ok(clientes);
     }
 
