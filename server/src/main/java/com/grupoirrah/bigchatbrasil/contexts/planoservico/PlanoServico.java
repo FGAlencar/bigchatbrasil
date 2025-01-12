@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,7 +20,9 @@ public class PlanoServico implements PersistentEntity<Long> {
     @Column(name = "valor")
     private BigDecimal valor;
 
-    @Column(name = "executor")
+    @ElementCollection
+    @CollectionTable(name = "planoservico_plataformas", joinColumns = @JoinColumn(name = "id_planoservico", referencedColumnName = "id"))
+    @Column(name = "plataforma")
     @Enumerated(EnumType.STRING)
-    private PlanoServicoExecutor executor;
+    private List<PlanoServicoPlataformas> plataformas;
 }

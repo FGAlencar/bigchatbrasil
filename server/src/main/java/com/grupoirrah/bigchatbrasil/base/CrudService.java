@@ -17,7 +17,7 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
     private CrudRepository<E, ID> repository;
 
     @Autowired
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public E findById(ID id){
         return this.repository.findById(id)
@@ -75,17 +75,17 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
 
 
     //métodos dedicados para services filhas
-    public E beforeSave(E entity){return entity;}
+    protected E beforeSave(E entity){return entity;}
 
-    public void afterSave(E entity){}
+    protected void afterSave(E entity){}
 
-    public E beforeUpdate(E entity){return entity;}
+    protected E beforeUpdate(E entity){return entity;}
 
-    public void afterUpdate(E entity){}
+    protected void afterUpdate(E entity){}
 
-    public E beforeDelete(E entity){return entity;}
+    protected E beforeDelete(E entity){return entity;}
 
-    public void afterDelete(E entity){}
+    protected void afterDelete(E entity){}
 
 
 }
