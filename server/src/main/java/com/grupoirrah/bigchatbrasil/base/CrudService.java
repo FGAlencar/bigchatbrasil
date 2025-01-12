@@ -33,7 +33,7 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
     public E save(E entity){
 
         if(!entity.isNew()){
-            throw new RuntimeException("Já existe registro com esse ID");
+            return this.update(entity.getId(), entity);
         }
 
         entity = this.beforeSave(entity);

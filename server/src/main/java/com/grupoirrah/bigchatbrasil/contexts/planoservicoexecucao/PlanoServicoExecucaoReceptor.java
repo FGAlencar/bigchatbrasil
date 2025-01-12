@@ -1,5 +1,6 @@
 package com.grupoirrah.bigchatbrasil.contexts.planoservicoexecucao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.planoservico.PlanoServicoPlataformas;
 import com.grupoirrah.bigchatbrasil.plataformaexecutor.Receptor;
@@ -18,6 +19,7 @@ public class PlanoServicoExecucaoReceptor implements PersistentEntity<Long>, Rec
 
     @ManyToOne
     @JoinColumn(name = "id_planoservicoexecucao", referencedColumnName = "id")
+    @JsonIgnore
     private PlanoServicoExecucao execucao;
 
     @Column(name = "identificacao")

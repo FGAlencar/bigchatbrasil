@@ -1,7 +1,8 @@
-package com.grupoirrah.bigchatbrasil.contexts.planocontratado;
+package com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano;
 
 import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.plano.Plano;
+import com.grupoirrah.bigchatbrasil.contexts.planocontratado.recarga.PlanoContratadoRecarga;
 import com.grupoirrah.bigchatbrasil.contexts.planoservicoexecucao.PlanoServicoExecucao;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -27,11 +28,20 @@ public class PlanoContratado implements PersistentEntity<Long> {
     @Column(name = "valor_disponivel")
     private BigDecimal valorDisponivel;
 
-    @OneToMany(mappedBy = "planoContratado")
+    @OneToMany(mappedBy = "planoContratado", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PlanoServicoExecucao> execucoes;
+
+    @OneToMany(mappedBy = "planoContratado", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PlanoContratadoRecarga> recargas;
 
     public void addCustoNovaExecucao(BigDecimal valorUtilizado){
         this.valorUtilizado = this.valorUtilizado.add(valorUtilizado);
         this.valorDisponivel = this.valorDisponivel.subtract(valorUtilizado);
+    }
+
+    public void novaRecarga(PlanoContratadoRecarga recarga){
+        this.valorDisponivel = this.valorDisponivel.add(recarga.getValor());
+        recarga.setPlanoContratado(this);
+        this.recargas.add(recarga);
     }
 }
