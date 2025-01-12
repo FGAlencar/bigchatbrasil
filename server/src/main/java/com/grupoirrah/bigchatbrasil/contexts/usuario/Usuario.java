@@ -2,8 +2,7 @@ package com.grupoirrah.bigchatbrasil.contexts.usuario;
 
 import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.pessoa.Pessoa;
-import com.grupoirrah.bigchatbrasil.contexts.plano.Plano;
-import com.grupoirrah.bigchatbrasil.contexts.planocontratado.PlanoContratado;
+import com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano.PlanoContratado;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +19,7 @@ public class Usuario implements PersistentEntity<Long> {
     @OneToMany
     @JoinTable(joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "id_planocontratado", referencedColumnName = "id"))
+
     private List<PlanoContratado> planos;
 
     @OneToOne
