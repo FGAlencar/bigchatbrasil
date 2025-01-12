@@ -1,4 +1,4 @@
-package com.grupoirrah.bigchatbrasil.common.pessoa;
+package com.grupoirrah.bigchatbrasil.contexts.pessoa;
 
 import com.grupoirrah.bigchatbrasil.base.CrudService;
 import lombok.RequiredArgsConstructor;
