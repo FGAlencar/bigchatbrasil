@@ -13,18 +13,15 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "planocontratado")
 public class PlanoContratado implements PersistentEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    private Usuario usuario;
-
     @OneToOne
-    @JoinColumn(name = "id_plano", referencedColumnName = "id")
+    @JoinColumn(name = "plano", referencedColumnName = "id")
     private Plano plano;
 
     @Column(name = "valor_utilizado")

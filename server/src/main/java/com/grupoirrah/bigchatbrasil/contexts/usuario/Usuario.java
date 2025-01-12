@@ -13,6 +13,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "usuario")
 public class Usuario implements PersistentEntity<Long> {
 
     @Id
@@ -20,9 +21,9 @@ public class Usuario implements PersistentEntity<Long> {
     private Long id;
 
     @OneToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "id_planocontratado", referencedColumnName = "id"))
-
+    @JoinTable( name = "usuario_planocontratado",
+            joinColumns = @JoinColumn(name = "usuario", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "planocontratado", referencedColumnName = "id"))
     private List<PlanoContratado> planos;
 
     @OneToOne

@@ -10,6 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "pessoa")
 public class Pessoa implements PersistentEntity<Long> {
 
     @Id

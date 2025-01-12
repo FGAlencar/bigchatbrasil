@@ -17,11 +17,14 @@ public class PlanoServico implements PersistentEntity<Long> {
     @Column(name = "nome")
     private String nome;
 
+    @Column(name = "descricao")
+    private String descricao;
+
     @Column(name = "valor")
     private BigDecimal valor;
 
     @ElementCollection
-    @CollectionTable(name = "planoservico_plataformas", joinColumns = @JoinColumn(name = "id_planoservico", referencedColumnName = "id"))
+    @CollectionTable(name = "planoservico_plataformas", joinColumns = @JoinColumn(name = "planoservico", referencedColumnName = "id"))
     @Column(name = "plataforma")
     @Enumerated(EnumType.STRING)
     private List<PlanoServicoPlataformas> plataformas;
