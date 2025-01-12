@@ -17,7 +17,7 @@ public class PlanoServico implements PersistentEntity<Long> {
     private String nome;
 
     @Column(name = "valor")
-    private BigDecimal valor = BigDecimal.ZERO;
+    private BigDecimal valor;
 
     @Column(name = "executor")
     @Enumerated(EnumType.STRING)
