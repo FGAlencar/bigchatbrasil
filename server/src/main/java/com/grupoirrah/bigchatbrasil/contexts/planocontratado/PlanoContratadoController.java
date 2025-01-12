@@ -1,6 +1,8 @@
 package com.grupoirrah.bigchatbrasil.contexts.planocontratado;
 
 import com.grupoirrah.bigchatbrasil.base.CrudController;
+import com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano.PlanoContratado;
+import com.grupoirrah.bigchatbrasil.contexts.planocontratado.recarga.PlanoContratadoRecarga;
 import com.grupoirrah.bigchatbrasil.contexts.planoservicoexecucao.PlanoServicoExecucaoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,5 +22,12 @@ public class PlanoContratadoController extends CrudController<PlanoContratado, L
         request.setIdServico(idServico);
         this.service.executarServico(request);
         return ResponseEntity.accepted().build();
+    }
+
+    @PostMapping("/{id}/recarga")
+    public ResponseEntity<PlanoContratado> novaRecarga(@PathVariable("id") Long idPlanoContratado,
+                                                       @RequestBody PlanoContratadoRecarga recarga){
+        PlanoContratado planoContratado = this.service.novaRecarga(idPlanoContratado, recarga);
+        return ResponseEntity.ok(planoContratado);
     }
 }
