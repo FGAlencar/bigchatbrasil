@@ -22,6 +22,7 @@ public class UsuarioService extends CrudService<Usuario, Long> {
     @Override
     public Usuario beforeSave(Usuario usuario){
         usuario = this.handlePessoa(usuario);
+        usuario = this.handleDadosLogin(usuario);
         return usuario;
     }
 
@@ -36,6 +37,15 @@ public class UsuarioService extends CrudService<Usuario, Long> {
 
         Pessoa pessoa = this.pessoaService.save(usuario.getPessoa());
         usuario.setPessoa(pessoa);
+        return usuario;
+    }
+
+    private Usuario handleDadosLogin(Usuario usuario){
+
+        if(usuario.getDadosLogin() == null){
+            HelpRestException.throwBadRequest("É necessário cadastro de dados para login");
+        }
+        usuario.getDadosLogin().setUsuario(usuario);
         return usuario;
     }
 

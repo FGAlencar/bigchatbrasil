@@ -1,5 +1,6 @@
 package com.grupoirrah.bigchatbrasil.contexts.usuario.login;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.usuario.Usuario;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ public class UsuarioLogin implements PersistentEntity<Long> {
 
     @OneToOne
     @JoinColumn(name = "usuario", referencedColumnName = "id")
+    @JsonIgnore
     private Usuario usuario;
 
     @Column(name = "email_redefinicao")

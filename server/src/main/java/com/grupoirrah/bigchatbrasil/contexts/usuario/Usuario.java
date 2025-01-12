@@ -1,6 +1,7 @@
 package com.grupoirrah.bigchatbrasil.contexts.usuario;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.pessoa.Pessoa;
 import com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano.PlanoContratado;
@@ -26,9 +27,9 @@ public class Usuario implements PersistentEntity<Long> {
 
     @OneToOne
     @JoinColumn(name = "pessoa", referencedColumnName = "id")
+    @JsonIncludeProperties("id")
     private Pessoa pessoa;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private UsuarioLogin dadosLogin;
 }
