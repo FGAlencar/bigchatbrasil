@@ -1,7 +1,7 @@
 package com.grupoirrah.bigchatbrasil.contexts.planoservicoexecucao;
 
 import com.grupoirrah.bigchatbrasil.base.CrudService;
-import com.grupoirrah.bigchatbrasil.base.restexceptions.EntityNotFoundException;
+import com.grupoirrah.bigchatbrasil.base.restexceptions.NotFoundException;
 import com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano.PlanoContratado;
 import com.grupoirrah.bigchatbrasil.contexts.planoservico.PlanoServico;
 import com.grupoirrah.bigchatbrasil.contexts.planoservico.PlanoServicoPlataformas;
@@ -83,7 +83,7 @@ public class PlanoServicoExecucaoService extends CrudService<PlanoServicoExecuca
                 .stream()
                 .filter( planoServico -> planoServico.getId().equals(request.getIdServico()))
                 .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Não foi encontrado serviço desejado"))
+                .orElseThrow(() -> new NotFoundException("Não foi encontrado serviço desejado"))
                 .getValor();
 
         execucao.setValorUnitario(custoUnitario);

@@ -4,6 +4,7 @@ import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.plano.Plano;
 import com.grupoirrah.bigchatbrasil.contexts.planocontratado.recarga.PlanoContratadoRecarga;
 import com.grupoirrah.bigchatbrasil.contexts.planoservicoexecucao.PlanoServicoExecucao;
+import com.grupoirrah.bigchatbrasil.contexts.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,8 +19,12 @@ public class PlanoContratado implements PersistentEntity<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    private Usuario usuario;
+
     @OneToOne
-    @JoinColumn(name = "plano_id", referencedColumnName = "id")
+    @JoinColumn(name = "id_plano", referencedColumnName = "id")
     private Plano plano;
 
     @Column(name = "valor_utilizado")

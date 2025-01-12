@@ -1,7 +1,8 @@
 package com.grupoirrah.bigchatbrasil.base;
 
 
-import com.grupoirrah.bigchatbrasil.base.restexceptions.EntityNotFoundException;
+import com.grupoirrah.bigchatbrasil.base.restexceptions.NotFoundException;
+import com.grupoirrah.bigchatbrasil.base.restexceptions.HelpRestException;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -22,7 +23,7 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
     public E findById(ID id){
         return this.repository.findById(id)
                 .orElseThrow(() ->
-                        new EntityNotFoundException("Não encontrado dados para o ID " + id));
+                        new NotFoundException("Não encontrado dados para o ID " + id));
     }
 
     public PagedModel<E> findAll(E entity, Pageable pageable){
@@ -45,11 +46,11 @@ public class CrudService<E extends PersistentEntity<ID>, ID extends Serializable
     public E update(ID id, E entity){
         boolean exists = this.repository.existsById(id);
         if(!exists){
-            throw  new RuntimeException("Não encontrado dados para o ID " + id);
+            HelpRestException.throwNotFound("Não encontrado dados para o ID " + id);
         }
 
         if(!id.equals(entity.getId())){
-            throw  new RuntimeException("ID informado não se refere aos dados a serem atualizados");
+            HelpRestException.throwNotFound("ID informado não se refere aos dados a serem atualizados");
         }
 
         entity = this.beforeUpdate(entity);
