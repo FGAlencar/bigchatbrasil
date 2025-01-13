@@ -13,16 +13,14 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "usuario")
 public class Usuario implements PersistentEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "id_planocontratado", referencedColumnName = "id"))
-
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<PlanoContratado> planos;
 
     @OneToOne

@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "usuariologin")
 public class UsuarioLogin implements PersistentEntity<Long> {
 
     @Id

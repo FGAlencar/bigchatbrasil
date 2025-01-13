@@ -19,6 +19,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "planoservicoexecucao")
 public class PlanoServicoExecucao implements PersistentEntity<Long> {
 
     @Id
@@ -26,12 +27,12 @@ public class PlanoServicoExecucao implements PersistentEntity<Long> {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_planocontratado", referencedColumnName = "id")
+    @JoinColumn(name = "planocontratado", referencedColumnName = "id")
     @JsonIgnore
     private PlanoContratado planoContratado;
 
     @ManyToOne
-    @JoinColumn(name = "id_planoservico", referencedColumnName = "id")
+    @JoinColumn(name = "planoservico", referencedColumnName = "id")
     private PlanoServico servico;
 
     @Column(name = "conteudo")

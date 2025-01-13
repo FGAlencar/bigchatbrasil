@@ -1,5 +1,7 @@
 package com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.plano.Plano;
 import com.grupoirrah.bigchatbrasil.contexts.planocontratado.recarga.PlanoContratadoRecarga;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "planocontratado")
 public class PlanoContratado implements PersistentEntity<Long> {
 
     @Id
@@ -20,11 +23,12 @@ public class PlanoContratado implements PersistentEntity<Long> {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    @JoinColumn(name = "usuario", referencedColumnName = "id")
+    @JsonIgnoreProperties({"planos"})
     private Usuario usuario;
 
     @OneToOne
-    @JoinColumn(name = "id_plano", referencedColumnName = "id")
+    @JoinColumn(name = "plano", referencedColumnName = "id")
     private Plano plano;
 
     @Column(name = "valor_utilizado")

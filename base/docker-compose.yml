@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres
+    # volumes:
+    #   - ./container-volume:/var/lib/postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: bigchatbrasil
+    ports:
+      - 5433:5432

@@ -5,12 +5,14 @@ import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
-public class Pessoa implements PersistentEntity<Long> {
+@Table(name = "pessoa")
+public class Pessoa implements PersistentEntity<Long>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,5 +2,16 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-
+    <include file="changes/1-Pessoa.xml" relativeToChangelogFile="true"/>
+    <include file="changes/2-ContatoTelefone.xml" relativeToChangelogFile="true"/>
+    <include file="changes/3-Endereco.xml" relativeToChangelogFile="true"/>
+    <include file="changes/4-ContatoEmail.xml" relativeToChangelogFile="true"/>
+    <include file="changes/5-PlanoServico.xml" relativeToChangelogFile="true"/>
+    <include file="changes/6-Plano.xml" relativeToChangelogFile="true"/>
+    <include file="changes/11-Usuario.xml" relativeToChangelogFile="true"/>
+    <include file="changes/12-UsuarioLogin.xml" relativeToChangelogFile="true"/>
+    <include file="changes/7-PlanoContratado.xml" relativeToChangelogFile="true"/>
+    <include file="changes/8-PlanoServicoExecucao.xml" relativeToChangelogFile="true"/>
+    <include file="changes/9-PlanoServicoExecucaoReceptor.xml" relativeToChangelogFile="true"/>
+    <include file="changes/10-PlanoContratadoRecarga.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

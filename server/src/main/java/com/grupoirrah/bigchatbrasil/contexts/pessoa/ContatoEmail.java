@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "contatoemail")
 public class ContatoEmail implements PersistentEntity<Long> {
 
     @Id

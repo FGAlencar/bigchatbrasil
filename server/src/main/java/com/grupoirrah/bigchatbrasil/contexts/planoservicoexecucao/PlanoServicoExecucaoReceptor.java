@@ -11,6 +11,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "planoservicoexecucaoreceptor")
 public class PlanoServicoExecucaoReceptor implements PersistentEntity<Long>, Receptor {
 
     @Id
@@ -18,7 +19,7 @@ public class PlanoServicoExecucaoReceptor implements PersistentEntity<Long>, Rec
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_planoservicoexecucao", referencedColumnName = "id")
+    @JoinColumn(name = "planoservicoexecucao", referencedColumnName = "id")
     @JsonIgnore
     private PlanoServicoExecucao execucao;
 
@@ -39,7 +40,7 @@ public class PlanoServicoExecucaoReceptor implements PersistentEntity<Long>, Rec
     private String mensagemErro;
 
     @ElementCollection
-    @CollectionTable(name = "receptor_plataformas", joinColumns = @JoinColumn(name = "id_receptor", referencedColumnName = "id"))
+    @CollectionTable(name = "receptor_plataformas", joinColumns = @JoinColumn(name = "receptor", referencedColumnName = "id"))
     @Column(name = "plataforma")
     @Enumerated(EnumType.STRING)
     private List<PlanoServicoPlataformas> plataformas;

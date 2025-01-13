@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="criacao-tabela-usuario" author="felipe.alencar">
+        <preConditions onFail="MARK_RAN" onFailMessage="Tabela usuario já criada">
+            <not>
+                <tableExists tableName="usuario"/>
+            </not>
+        </preConditions>
+        <createTable tableName="usuario">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="pessoa" type="BIGINT">
+                <constraints foreignKeyName="FK_usuario_pessoa" referencedTableName="pessoa" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

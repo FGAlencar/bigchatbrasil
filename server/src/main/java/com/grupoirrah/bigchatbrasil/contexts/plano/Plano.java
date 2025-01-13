@@ -10,6 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "plano")
 public class Plano implements PersistentEntity<Long> {
 
     @Id
@@ -19,9 +20,8 @@ public class Plano implements PersistentEntity<Long> {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "tipo_plano")
-    @Enumerated(EnumType.STRING)
-    private TipoPlano tipoPlano;
+    @Column(name = "descricao")
+    private String descricao;
 
     @Column(name = "data_inicial")
     private LocalDate dataInicial;
@@ -33,8 +33,9 @@ public class Plano implements PersistentEntity<Long> {
     private Boolean ativo = Boolean.TRUE;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "plano_planoservico", joinColumns = {
-            @JoinColumn(name = "id_plano", referencedColumnName = "id") }, inverseJoinColumns = {
-            @JoinColumn(name = "id_planoservico", referencedColumnName = "id") })
+    @ElementCollection
+    @JoinTable(name = "plano_planoservico",
+            joinColumns = {@JoinColumn(name = "plano", referencedColumnName = "id") },
+            inverseJoinColumns = {@JoinColumn(name = "planoservico", referencedColumnName = "id") })
     private List<PlanoServico> servicos;
 }

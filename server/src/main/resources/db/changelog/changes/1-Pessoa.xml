@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="criacao-tabela-pessoa" author="felipe.alencar">
+        <preConditions onFail="MARK_RAN" onFailMessage="Tabela Pessoa já criada">
+            <not>
+                <tableExists tableName="pessoa"/>
+            </not>
+        </preConditions>
+        <createTable tableName="pessoa">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="nome" type="VARCHAR(255)"/>
+            <column name="razao_social" type="VARCHAR(255)"/>
+            <column name="tipo_pessoa" type="VARCHAR(10)"/>
+            <column name="cpf_cnpj" type="VARCHAR(20)"/>
+            <column name="ativo" type="boolean"/>
+            <column name="responsavel" type="BIGINT">
+                <constraints foreignKeyName="FK_responsavel_pessoa" referencedTableName="pessoa" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
