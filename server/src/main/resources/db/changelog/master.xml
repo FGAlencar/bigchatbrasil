@@ -8,10 +8,10 @@
     <include file="changes/4-ContatoEmail.xml" relativeToChangelogFile="true"/>
     <include file="changes/5-PlanoServico.xml" relativeToChangelogFile="true"/>
     <include file="changes/6-Plano.xml" relativeToChangelogFile="true"/>
+    <include file="changes/11-Usuario.xml" relativeToChangelogFile="true"/>
+    <include file="changes/12-UsuarioLogin.xml" relativeToChangelogFile="true"/>
     <include file="changes/7-PlanoContratado.xml" relativeToChangelogFile="true"/>
     <include file="changes/8-PlanoServicoExecucao.xml" relativeToChangelogFile="true"/>
     <include file="changes/9-PlanoServicoExecucaoReceptor.xml" relativeToChangelogFile="true"/>
     <include file="changes/10-PlanoContratadoRecarga.xml" relativeToChangelogFile="true"/>
-    <include file="changes/11-Usuario.xml" relativeToChangelogFile="true"/>
-    <include file="changes/12-UsuarioLogin.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
