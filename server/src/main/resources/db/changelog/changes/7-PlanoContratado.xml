@@ -13,6 +13,9 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
+            <column name="usuario" type="BIGINT">
+                <constraints foreignKeyName="FK_planocontratado_usuario" referencedTableName="usuario" referencedColumnNames="id"/>
+            </column>
             <column name="plano" type="BIGINT">
                 <constraints foreignKeyName="FK_planocontratado_plano" referencedTableName="planocontratado" referencedColumnNames="id"/>
             </column>

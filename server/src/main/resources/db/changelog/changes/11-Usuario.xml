@@ -17,10 +17,6 @@
                 <constraints foreignKeyName="FK_usuario_pessoa" referencedTableName="pessoa" referencedColumnNames="id"/>
             </column>
         </createTable>
-        <createTable tableName="usuario_planocontratado">
-            <column name="usuario" type="BIGINT"/>
-            <column name="planocontratado" type="BIGINT"/>
-        </createTable>
     </changeSet>
 
 </databaseChangeLog>

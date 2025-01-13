@@ -1,5 +1,7 @@
 package com.grupoirrah.bigchatbrasil.contexts.planocontratado.plano;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.grupoirrah.bigchatbrasil.base.PersistentEntity;
 import com.grupoirrah.bigchatbrasil.contexts.plano.Plano;
 import com.grupoirrah.bigchatbrasil.contexts.planocontratado.recarga.PlanoContratadoRecarga;
@@ -19,6 +21,11 @@ public class PlanoContratado implements PersistentEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario", referencedColumnName = "id")
+    @JsonIgnoreProperties({""})
+    private Usuario usuario;
 
     @OneToOne
     @JoinColumn(name = "plano", referencedColumnName = "id")

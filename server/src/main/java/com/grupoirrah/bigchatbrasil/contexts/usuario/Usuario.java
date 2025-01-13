@@ -20,10 +20,7 @@ public class Usuario implements PersistentEntity<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    @JoinTable( name = "usuario_planocontratado",
-            joinColumns = @JoinColumn(name = "usuario", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "planocontratado", referencedColumnName = "id"))
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<PlanoContratado> planos;
 
     @OneToOne
