@@ -27,7 +27,7 @@ public class PlanoContratadoRecarga implements PersistentEntity<Long> {
     @Column(name = "valor")
     private BigDecimal valor;
 
-    @Column(name = "responsavel")
+    @ManyToOne
     @JoinColumn(name = "responsavel", referencedColumnName = "id")
     private Pessoa responsavel;
 }

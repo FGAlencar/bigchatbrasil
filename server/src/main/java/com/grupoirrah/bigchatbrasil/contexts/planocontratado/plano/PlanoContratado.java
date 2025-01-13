@@ -24,7 +24,7 @@ public class PlanoContratado implements PersistentEntity<Long> {
 
     @ManyToOne
     @JoinColumn(name = "usuario", referencedColumnName = "id")
-    @JsonIgnoreProperties({""})
+    @JsonIgnoreProperties({"planos"})
     private Usuario usuario;
 
     @OneToOne
