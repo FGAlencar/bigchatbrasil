@@ -1,0 +1,902 @@
+{
+	"info": {
+		"_postman_id": "5c51ae8c-389f-43b2-a996-0b5f9e339c81",
+		"name": "BigChatBrasil",
+		"description": "Collections destinado à documentação da aplicação BigChatBrasil, com os endpoints para testes;",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12485495"
+	},
+	"item": [
+		{
+			"name": "Pessoa",
+			"item": [
+				{
+					"name": "Consulta paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pessoa?page=&size=&id=&nome=&razaoSocial=&tipoPessoa=&ativo=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pessoa"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "",
+									"description": "Número da página"
+								},
+								{
+									"key": "size",
+									"value": "",
+									"description": "Quantidade de elementos"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"description": "Id da pessoa"
+								},
+								{
+									"key": "nome",
+									"value": "",
+									"description": "Nome da pessoa"
+								},
+								{
+									"key": "razaoSocial",
+									"value": "",
+									"description": "Razão social da pessoa jurídica"
+								},
+								{
+									"key": "tipoPessoa",
+									"value": "",
+									"description": "FISICA ou JURIDICA"
+								},
+								{
+									"key": "ativo",
+									"value": "",
+									"description": "TRUE ou FALSE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pessoa/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pessoa",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nova Pessoa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"nome\":\"Nome da pessoa ou nome fantasia\",\n    \"razaoSocial\":\"Razão social\",\n    \"tipoPessoa\": \"JURIDICA\",\n    \"cpfCnpj\":\"12312312312\",\n    \"contatoTelefones\":[\n        {\n            \"ddd\":\"44\",\n            \"numero\":\"988880000\",\n            \"whatsApp\":true,\n            \"principal\": false\n        }\n    ],\n    \"enderecos\":[\n        {\n            \"rua\":\"Noma da rua\",\n            \"numero\":\"100\",\n            \"complemento\": \"Sem complemento\",\n            \"bairro\":\" Centro\",\n            \"cidade\":\"Maringá\",\n            \"estado\":\"Paraná\",\n            \"uf\":\"PR\",\n            \"principal\":true,\n            \"correspondencia\": true\n        }\n    ],\n    \"emails\":[\n        {\n            \"email\":\"feealencarr@gmail.com\",\n            \"principal\":true\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/pessoa"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 5,\n    \"nome\": \"Nome da pessoa ou nome fantasia\",\n    \"razaoSocial\": null,\n    \"tipoPessoa\": \"FISICA\",\n    \"cpfCnpj\": \"12312312312\",\n    \"ativo\": true,\n    \"responsavel\": null,\n    \"contatoTelefones\": [\n        {\n            \"id\": 8,\n            \"pessoa\": {\n                \"id\": 5,\n                \"nome\": \"Nome da pessoa ou nome fantasia\",\n                \"razaoSocial\": \"Razão social\",\n                \"tipoPessoa\": \"JURIDICA\",\n                \"cpfCnpj\": \"12312312312\"\n            },\n            \"ddd\": \"44\",\n            \"numero\": \"988880000\",\n            \"whatsApp\": true,\n            \"principal\": false\n        }\n    ],\n    \"enderecos\": [\n        {\n            \"id\": 3,\n            \"pessoa\": {\n                \"id\": 5,\n                \"nome\": \"Nome da pessoa ou nome fantasia\",\n                \"razaoSocial\": \"Razão social\",\n                \"tipoPessoa\": \"JURIDICA\",\n                \"cpfCnpj\": \"12312312312\"\n            },\n            \"rua\": \"Noma da rua\",\n            \"numero\": \"100\",\n            \"complemente\": null,\n            \"bairro\": \" Centro\",\n            \"cidade\": \"Maringá\",\n            \"estado\": \"Paraná\",\n            \"uf\": \"PR\",\n            \"principal\": true,\n            \"correspondencia\": true\n        }\n    ],\n    \"emails\": [\n        {\n            \"id\": 5,\n            \"pessoa\": {\n                \"id\": 5,\n                \"nome\": \"Nome da pessoa ou nome fantasia\",\n                \"razaoSocial\": \"Razão social\",\n                \"tipoPessoa\": \"JURIDICA\",\n                \"cpfCnpj\": \"12312312312\"\n            },\n            \"email\": \"feealencarr@gmail.com\",\n            \"principal\": true\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/pessoa/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pessoa",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro para atualizar(Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/pessoa/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"pessoa",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro a deletar (Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "API destinada à cadastro de pessoas, tanto física quando Juridica"
+		},
+		{
+			"name": "Plano Serviço",
+			"item": [
+				{
+					"name": "Consulta paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano-servico?page=&size=&nome=&descricao=&valor=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-servico"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "",
+									"description": "Número da página"
+								},
+								{
+									"key": "size",
+									"value": "",
+									"description": "Quantidade de elementos"
+								},
+								{
+									"key": "nome",
+									"value": "",
+									"description": "Nome do serviço"
+								},
+								{
+									"key": "descricao",
+									"value": "",
+									"description": "Descrição do serviço"
+								},
+								{
+									"key": "valor",
+									"value": "",
+									"description": "Valor do serviço"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano-servico/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-servico",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo plano serviço",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Envio SMS\",\n    \"valor\":\"0.25\",\n    \"plataformas\":[\n        \"SMS\",\n        \"WHATSAPP\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/plano-servico"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":2,\n    \"nome\":\"Envio SMS\",\n    \"valor\":\"0.35\",\n    \"plataformas\":[\n        \"SMS\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/plano-servico/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-servico",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro para atualizar(Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano-servico/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-servico",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro a deletar (Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plano",
+			"item": [
+				{
+					"name": "Consulta paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano?page=&size=&nome=&descricao=&dataInicial=&dataFinal=&ativo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "",
+									"description": "Número da página"
+								},
+								{
+									"key": "size",
+									"value": "",
+									"description": "Quantidade de elementos"
+								},
+								{
+									"key": "nome",
+									"value": "",
+									"description": "Nome do Pano"
+								},
+								{
+									"key": "descricao",
+									"value": "",
+									"description": "Descrição do plano"
+								},
+								{
+									"key": "dataInicial",
+									"value": "",
+									"description": "Data Inicial do plano"
+								},
+								{
+									"key": "dataFinal",
+									"value": "",
+									"description": "Data final do plano"
+								},
+								{
+									"key": "ativo",
+									"value": null,
+									"description": "TRUE ou FALSE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo plano",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\":\"Nome do Plano\",\n    \"descricao\":\"Descrição\",\n    \"dataInicial\":\"2024-01-01\",\n    \"dataFinal\":\"2024-01-31\",\n    \"servicos\":[\n        {   \n            \"id\":1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/plano"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"nome\": \"Nome do Plano\",\n    \"descricao\": \"Descrição\",\n    \"dataInicial\": \"2024-01-01\",\n    \"dataFinal\": \"2024-01-31\",\n    \"ativo\": true,\n    \"servicos\": [\n        {\n            \"id\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/plano/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro para atualizar(Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "ID do registro a deletar (Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plano Contratado",
+			"item": [
+				{
+					"name": "Consulta paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano-contratado?page=0&size=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-contratado"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Número da página"
+								},
+								{
+									"key": "size",
+									"value": "20",
+									"description": "Quantidade de elementos"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano-contratado/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-contratado",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID do registro"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usuario\":{ \n        \"id\":1 \n    },\n    \"plano\":{\n        \"id\":1\n    },\n    \"valorUtilizado\":0,\n    \"valorDisponivel\":0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/plano-contratado"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/plano-contratado/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-contratado",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID do registro para atualizar(Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plano-contratado/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-contratado",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID do registro a deletar (Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execucao do serviço",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"conteudo\":\"Teste\",\n    \"receptores\":[\n        {\n            \"identificacao\":\"Teste 01\",\n            \"ddd\":\"44\",\n            \"numero\":\"988880000\",\n            \"plataformas\":[\"SMS\", \"WHATSAPP\"]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/plano-contratado/:idPlanoContratado/servico/:idServico",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-contratado",
+								":idPlanoContratado",
+								"servico",
+								":idServico"
+							],
+							"variable": [
+								{
+									"key": "idPlanoContratado",
+									"value": "1",
+									"description": "Id do plano contratado para saber qual serviço será executado"
+								},
+								{
+									"key": "idServico",
+									"value": "1",
+									"description": "ID do serviço que será executado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nova Recarga",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"valor\":10,\n    \"responsavel\":{\n        \"id\":1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/plano-contratado/:id/recarga",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plano-contratado",
+								":id",
+								"recarga"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Id do plano contratado"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Consulta paginada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/usuario?page=0&size=20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Número da página"
+								},
+								{
+									"key": "size",
+									"value": "20",
+									"description": "Quantidade de elementos"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/usuario/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"usuario",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID do registro"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"pessoa\":{\n        \"id\":3\n   },\n   \"dadosLogin\":{\n        \"emailRedefinicao\":\"qualquer@gmail.com\",\n        \"login\":\"alencar\",\n        \"senha\":\"alencar\"\n   }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"pessoa\":{\n        \"id\":1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/usuario/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"usuario",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID do registro para atualizar(Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\":\"alow\",\n    \"senha\":\"Teste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/api/usuario/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/usuario/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"usuario",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "ID do registro a deletar (Será validado)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
