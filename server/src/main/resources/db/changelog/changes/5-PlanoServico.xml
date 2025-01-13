@@ -17,7 +17,7 @@
             <column name="descricao" type="VARCHAR(100)"/>
             <column name="valor" type="NUMERIC(15,2)"/>
         </createTable>
-        <createTable tableName="planoserviceo_plataformas">
+        <createTable tableName="planoservico_plataformas">
             <column name="planoservico" type="BIGINT"/>
             <column name="plataforma" type="VARCHAR(50)"/>
         </createTable>

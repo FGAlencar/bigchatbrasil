@@ -18,7 +18,9 @@
             </column>
             <column name="rua" type="VARCHAR(100)"/>
             <column name="numero" type="VARCHAR(10)"/>
+            <column name="complemento" type="VARCHAR(50)"/>
             <column name="bairro" type="VARCHAR(50)"/>
+            <column name="cidade" type="VARCHAR(50)"/>
             <column name="estado" type="VARCHAR(50)"/>
             <column name="uf" type="VARCHAR(2)"/>
             <column name="principal" type="boolean"/>

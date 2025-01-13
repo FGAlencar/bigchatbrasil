@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "planoservico")
 public class PlanoServico implements PersistentEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
