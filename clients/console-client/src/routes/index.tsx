@@ -3,6 +3,8 @@ import {
     Route,
     Routes,
     BrowserRouter,
+    Link,
+    Navigate,
   } from "react-router-dom";
 import LoginRoutes from './LoginRoutes';
 import { RoutesType } from '../types/Routes';
@@ -17,6 +19,9 @@ const IndexRoutes:React.FC = () =>{
     return (
         <BrowserRouter>
             <Routes>
+                <Route path='/' element={(
+                    <Navigate to={'home'}/>
+                )}/>
                 {LoginRoutes.map(mapToRoute)}
                 {HomeRoutes.map(mapToRoute)}
             </Routes>
