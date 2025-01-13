@@ -10,10 +10,10 @@
             </not>
         </preConditions>
         <createTable tableName="planoservicoexecucaoreceptor">
-            <column name="id" type="NUMERIC" autoIncrement="true">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="planoservicoexecucao" type="NUMERIC">
+            <column name="planoservicoexecucao" type="BIGINT">
                 <constraints foreignKeyName="FK_receptor_execucao" referencedTableName="planoservicoexecucao" referencedColumnNames="id"/>
             </column>
             <column name="identificacao" type="VARCHAR(100)"/>
@@ -23,7 +23,7 @@
             <column name="mensagem_erro" type="VARCHAR(300)"/>
         </createTable>
         <createTable tableName="receptor_plataformas">
-            <column name="receptor" type="NUMERIC"/>
+            <column name="receptor" type="BIGINT"/>
             <column name="plataforma" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>

@@ -10,10 +10,10 @@
             </not>
         </preConditions>
         <createTable tableName="usuariologin">
-            <column name="id" type="NUMERIC" autoIncrement="true">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="usuario" type="NUMERIC">
+            <column name="usuario" type="BIGINT">
                 <constraints foreignKeyName="FK_login_usuario" referencedTableName="usuario" referencedColumnNames="id"/>
             </column>
             <column name="email_redefinicao" type="VARCHAR(100)"/>

@@ -10,13 +10,13 @@
             </not>
         </preConditions>
         <createTable tableName="planoservicoexecucao">
-            <column name="id" type="NUMERIC" autoIncrement="true">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="planocontratado" type="NUMERIC">
+            <column name="planocontratado" type="BIGINT">
                 <constraints foreignKeyName="FK_planoservicoexecucao_planocontratado" referencedTableName="planocontratado" referencedColumnNames="id"/>
             </column>
-            <column name="planoservico" type="NUMERIC">
+            <column name="planoservico" type="BIGINT">
                 <constraints foreignKeyName="FK_planoservicoexecucao_planoservico" referencedTableName="planoservico" referencedColumnNames="id"/>
             </column>
             <column name="valor_unitario" type="NUMERIC(15,2)"/>

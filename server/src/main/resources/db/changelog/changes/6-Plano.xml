@@ -10,7 +10,7 @@
             </not>
         </preConditions>
         <createTable tableName="plano">
-            <column name="id" type="NUMERIC" autoIncrement="true">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="nome" type="VARCHAR(100)"/>
@@ -20,8 +20,8 @@
             <column name="ativo" type="boolean"/>
         </createTable>
         <createTable tableName="plano_planoservico">
-            <column name="plano" type="NUMERIC"/>
-            <column name="planoservico" type="NUMERIC"/>
+            <column name="plano" type="BIGINT"/>
+            <column name="planoservico" type="BIGINT"/>
         </createTable>
     </changeSet>
 

@@ -10,7 +10,7 @@
             </not>
         </preConditions>
         <createTable tableName="pessoa">
-            <column name="id" type="NUMERIC" autoIncrement="true">
+            <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
             <column name="nome" type="VARCHAR(255)"/>
@@ -18,7 +18,7 @@
             <column name="tipo_pessoa" type="VARCHAR(10)"/>
             <column name="cpf_cnpj" type="VARCHAR(20)"/>
             <column name="ativo" type="boolean"/>
-            <column name="responsavel" type="NUMERIC">
+            <column name="responsavel" type="BIGINT">
                 <constraints foreignKeyName="FK_responsavel_pessoa" referencedTableName="pessoa" referencedColumnNames="id"/>
             </column>
         </createTable>
