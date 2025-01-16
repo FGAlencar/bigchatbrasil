@@ -1,5 +1,5 @@
 import LoginPage from "../pages/login/LoginPage";
-import { RoutesType } from "../types/Routes";
+import { RoutesType } from "../types/config/RoutesType.d";
 const routes:RoutesType[] =  [
     {
         label:'Login page',

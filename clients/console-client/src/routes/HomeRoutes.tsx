@@ -1,5 +1,5 @@
 import HomePage from "../pages/home/HomePage";
-import { RoutesType } from "../types/Routes";
+import { RoutesType } from "../types/config/RoutesType.d";
 const routes:RoutesType[] =  [
     {
         label:'Home',
