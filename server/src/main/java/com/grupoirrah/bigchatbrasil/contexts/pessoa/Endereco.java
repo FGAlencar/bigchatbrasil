@@ -26,7 +26,7 @@ public class Endereco implements PersistentEntity<Long> {
     private String numero;
 
     @Column(name = "complemento")
-    private String complemente;
+    private String complemento;
 
     @Column(name = "bairro")
     private String bairro;

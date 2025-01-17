@@ -14,7 +14,7 @@ export type TableColumn = {label:string, column:string, renderComponent:(value:a
 type Props={
     columns: TableColumn[];
     data:any[],
-    action?:(element:any) => ReactNode;
+    action?:(element:any, indexElement:number) => ReactNode;
 }
 
 
@@ -33,13 +33,13 @@ const CommonTable:React.FC<Props> = ({
         </TableRow>
 
     const mapDataToRow = (data:any[]) =>
-        data.map(element =>
+        data.map((element, indexElement) =>
             <TableRow>
                 {columns.map(column =>
                     <TableCell>{column.renderComponent(element[column.column])}</TableCell>
                 )}
                 {
-                    action && <TableCell>{action(element)}</TableCell> 
+                    action && <TableCell>{action(element, indexElement)}</TableCell> 
                 }
             </TableRow>
 

@@ -34,7 +34,7 @@ const PlanoServicoFormPage:React.FC = () =>{
             setLoading(false)
              setShowAlert(true)
         })
-    },[id])
+    },[id, isNew])
 
     const submit = () =>{
         setLoading(true)

@@ -2,13 +2,14 @@ import { Pessoa, PessoaForm } from "./Pessoa"
 import { PlanoContratado } from "./PlanoContratado"
 
 export type Usuario ={
-    id:number,
+    id?:number,
     planos: PlanoContratado[],
     pessoa: Pessoa,
     dadosLogin:DadosLogin
 }
 
 export type DadosLogin={
+    id?: number,
     login:string,
     senha:string,
     emailRedefinicao:string

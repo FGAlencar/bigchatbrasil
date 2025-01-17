@@ -34,10 +34,10 @@ const RegistroUsuarioPage:React.FC = () =>{
     const navigator = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
     const [showAlert, setShowAlert] = useState<boolean>(false);
-    const [form, setForm] = useState<UsuarioForm>({
+    const [form, setForm] = useState<Usuario>({
         planos:[],
-        pessoa:{ativo:true, enderecos:[], contatoTelefones:[], emails:[]}, 
-        dadosLogin:{}
+        pessoa:{nome:'', razaoSocial: '', cpfCnpj:'', tipoPessoa:'FISICA',ativo:true, enderecos:[], contatoTelefones:[], emails:[]}, 
+        dadosLogin:{login:'', senha:'', emailRedefinicao:''}
     });
 
 
