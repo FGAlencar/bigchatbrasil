@@ -8,8 +8,8 @@ import CadastroDadosLogin from "../../components/cadastros/dados-login/CadastroD
 import CommonButton from "../../components/buttons/Button";
 import LoadingSpinner from "../../components/user-feedback/LoadingSpinner";
 import { UsuarioService } from "../../services";
-import { UserStorage } from "../../storages";
 import { useNavigate } from "react-router-dom";
+import UsuarioStograge from "../../storages/UsuarioStorage";
 
 
 
@@ -29,7 +29,7 @@ const MotherBoxStyle:CSSProperties={
 }
 
 const RegistroUsuarioPage:React.FC = () =>{
-    const usuarioStorage = UserStorage();
+    const usuarioStorage = UsuarioStograge();
     const navigator = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
     const [form, setForm] = useState<UsuarioForm>({

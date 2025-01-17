@@ -6,7 +6,7 @@ import { Usuario } from '../types/Usuario';
 
 
 
-export const UserStorage = create<UsuarioStorage>()(persist(
+const UsuarioStograge = create<UsuarioStorage>()(persist(
     (set, get) =>({
         user: undefined,
         lastLogin: undefined,
@@ -33,3 +33,5 @@ export const UserStorage = create<UsuarioStorage>()(persist(
         name:'usuario-storage',
         storage: createJSONStorage(() => LocalStorage)
     }))
+
+export default UsuarioStograge;

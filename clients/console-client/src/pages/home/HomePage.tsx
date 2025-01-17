@@ -1,31 +1,26 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserStorage } from "../../storages";
+import UsuarioStograge  from "../../storages/UsuarioStorage";
 import CommonButton from "../../components/buttons/Button";
+import TopBar from "../../components/navbar/top-bar/TopBar";
 
 const HomePage:React.FC = () =>{
-    const requireNewLogin = UserStorage(state => state.requireNewLogin);
-    const logout = UserStorage(state => state.logout)
+    const requireNewLogin = UsuarioStograge(state => state.requireNewLogin);
+    const logout = UsuarioStograge(state => state.logout)
     const navigate = useNavigate();
     
-    useEffect(()=>{
-        if (requireNewLogin()){
-            navigate('/login')
-        }
-    },[])
+    // useEffect(()=>{
+    //     if (requireNewLogin()){
+    //         navigate('/login')
+    //     }
+    // },[])
 
 
 
 
     return(
     <>
-        <h1>HomePage</h1>
-        <>
-            <CommonButton label="Logout" onClick={() =>{
-                logout();
-                navigate('/login')
-            }}/>
-        </>
+        <TopBar/>
     </>
     )
 }
