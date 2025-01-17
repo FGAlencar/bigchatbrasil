@@ -4,17 +4,16 @@ import LeftSideBar from "../../components/navbar/left-bar/LeftSideBar"
 import React, { useEffect, useState } from "react";
 import UsuarioStograge from "../../storages/UsuarioStorage";
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const MainPage:React.FC = () =>{
   const requireNewLogin = UsuarioStograge(state => state.requireNewLogin);
-  const logout = UsuarioStograge(state => state.logout)
   const navigate = useNavigate();
   
     useEffect(()=>{
         if (requireNewLogin()){
             navigate('/login')
         }
+        // eslint-disable-next-line
     },[])
 
     const [openMenus, setOpenMenus] = useState<boolean>(false);

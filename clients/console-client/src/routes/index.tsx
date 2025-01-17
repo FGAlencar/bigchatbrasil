@@ -3,7 +3,6 @@ import {
     Route,
     Routes,
     BrowserRouter,
-    Navigate,
   } from "react-router-dom";
 import LoginRoutes from './LoginRoutes';
 import { RoutesType } from '../types/config/RoutesType.d';

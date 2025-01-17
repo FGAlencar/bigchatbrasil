@@ -8,8 +8,6 @@ import LoadingSpinner from '../../components/user-feedback/LoadingSpinner';
 import { UsuarioService } from '../../services';
 import { LoginRequest } from '../../types/LoginRequest';
 import { useNavigate } from 'react-router-dom';
-import UserAlert from '../../components/user-feedback/alert/Alert';
-import { AlertCommonProps } from '../../components/user-feedback/alert/alert';
 import AlertError from '../../components/user-feedback/alert/AlertError';
 
 

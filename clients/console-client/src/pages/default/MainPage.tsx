@@ -3,8 +3,6 @@ import TopBar from "../../components/navbar/top-bar/TopBar"
 import LeftSideBar from "../../components/navbar/left-bar/LeftSideBar"
 import React, { useState } from "react";
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
-
 const MainPage:React.FC = () =>{
     const [openMenus, setOpenMenus] = useState<boolean>(false);
     

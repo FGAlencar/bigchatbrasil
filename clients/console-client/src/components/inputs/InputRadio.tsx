@@ -1,5 +1,5 @@
 import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import { FormControl, FormLabel } from "react-bootstrap";
+import { FormLabel } from "react-bootstrap";
 import { InputRadioProps } from "./InputProps";
 
 const InputRadio:React.FC<InputRadioProps> = ({
