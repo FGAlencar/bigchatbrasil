@@ -33,7 +33,7 @@ const IndexRoutes:React.FC = () =>{
                 <Route path='/' element={<MainPage/>}
                     children={ internalRoutes }
                 />
-                {externalRoutes} {/* Criado rota externa para não replicar os menus que estão disponívels nas rotas iternas*/}
+                {externalRoutes} 
             </Routes>
         </BrowserRouter>
     ) 

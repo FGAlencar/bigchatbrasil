@@ -3,12 +3,6 @@ import { CSSProperties } from "react";
 import { InputProps } from "./InputProps";
 
 
-const style:CSSProperties = {
-
-}
-
-
-
 const CommonInput: React.FC<InputProps>= ({
     name, 
     placeholder = "",
@@ -29,7 +23,6 @@ const CommonInput: React.FC<InputProps>= ({
                 type={type}
                 label={label}
                 value={value}
-                style={style}
                 aria-describedby={helperText ? `input-${name}-helper`: undefined  }
                 onChange={e => onChange(e.target.name, e.target.value)}
             />
