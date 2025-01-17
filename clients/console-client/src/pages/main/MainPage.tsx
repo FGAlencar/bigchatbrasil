@@ -13,7 +13,6 @@ const MainPage:React.FC = () =>{
         if (requireNewLogin()){
             navigate('/login')
         }
-        // eslint-disable-next-line
     },[])
 
     const [openMenus, setOpenMenus] = useState<boolean>(false);

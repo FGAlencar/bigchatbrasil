@@ -52,7 +52,6 @@ const PlanoServicoListPage:React.FC = () =>{
 
     useEffect(()=>{
         fetchData()
-        // eslint-disable-next-line
     },[])
 
     return(
