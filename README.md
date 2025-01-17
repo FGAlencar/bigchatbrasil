@@ -36,6 +36,7 @@ No Bash ou PoweShell, navegar até a pasta "Server", onde fica o backend e execu
 ### Para executar
 #### Versões necessárias
 node -> 18.10.0
+
 yarn -> 1.22.22
 
 #### console-client e user client
@@ -44,4 +45,5 @@ No Bash ou PoweShell, navegar até a pasta "console-client" ou "user-client" e e
 Obs 1: Caso use o nvm, basta usar o comando "nvm use" para usar a versão correta do node
 
 yarn  -> para baixar as dependencias
+
 yarn start -> para executar o projeto 
