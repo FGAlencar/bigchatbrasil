@@ -50,7 +50,6 @@ const PlanoServicoListPage:React.FC = () =>{
         })
         .catch(err =>{
             setLoading(false)
-            console.log(err)
             openErrorAlert('Ops...', 'Não foi possível consultar os dados. Entre em contato com o suporte!')
 
         })
