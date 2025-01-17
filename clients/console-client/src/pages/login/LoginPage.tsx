@@ -31,11 +31,6 @@ type LoginForm = {
     senha?: string
 }
 
-type AlertControl = {
-    open:boolean;
-    title: string; 
-    message:string
-}
 
 const LoginPage:React.FC = () =>{
     const navigate = useNavigate();

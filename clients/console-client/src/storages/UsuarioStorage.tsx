@@ -18,6 +18,7 @@ const UsuarioStorage = create<UsuarioStorageDefinition>()(persist(
         requireNewLogin: (): boolean => {
             const lastLogin = get().lastLogin
             if( lastLogin === undefined || lastLogin === null) return true
+        
             const lastLoginDate = new Date(lastLogin);
             const diffInMillisecond = new Date().getTime() - lastLoginDate.getTime();
             const diffInSecond = diffInMillisecond / 1000;

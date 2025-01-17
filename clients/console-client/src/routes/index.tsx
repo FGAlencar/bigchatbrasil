@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 import LoginRoutes from './LoginRoutes';
 import { RoutesType } from '../types/config/RoutesType.d';
-import HomeRoutes from './HomeRoutes'
+import MenuRoutes from './MenusRoutes'
 import {InternalUsuarioRoutes, ExternalUsuarioRoutes} from './UsuarioRoutes'
 import MainPage from '../pages/main/MainPage';
 
@@ -23,7 +23,7 @@ const IndexRoutes:React.FC = () =>{
 
     const internalRoutes = [
         ...InternalUsuarioRoutes.map(mapToRoute),
-        ...HomeRoutes.map(mapToRoute)
+        ...MenuRoutes.map(mapToRoute)
 
     ]
 
@@ -33,7 +33,7 @@ const IndexRoutes:React.FC = () =>{
                 <Route path='/' element={<MainPage/>}
                     children={ internalRoutes }
                 />
-                {externalRoutes}
+                {externalRoutes} {/* Criado rota externa para não replicar os menus que estão disponívels nas rotas iternas*/}
             </Routes>
         </BrowserRouter>
     ) 

@@ -8,6 +8,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import HomeIcon from '@mui/icons-material/Home';
+import AppContextStorage from '../../../storages/AppContextStorage';
+import { useNavigate } from 'react-router-dom';
 
 
 type Props={
@@ -16,27 +20,33 @@ type Props={
                     (event: React.KeyboardEvent | React.MouseEvent) => void
 }
 
-const menus = [
-    {label:'Usuário', icon:<AccountCircleIcon/>, path:''}
-]   
+type Menu = {
+  label:string, path:string, icon:any
+}
+
+const usuarioMenus:Menu[] = [
+  {label:'Usuário', icon:<AccountCircleIcon/>, path:''}
+]
+
+const sistemaMenus:Menu[] = [
+  {label:'Serviços', path:'/servico', icon:<TextSnippetIcon/>}
+]
+
+const homeMenu:Menu[] =[
+  {label:'Home', icon:<HomeIcon/>, path:'/home'}
+]
 
 const LeftSideBar:React.FC<Props> = ({
     open, toggleDrawer
 }) => {
-  
+  const navigateTo = useNavigate();
+  const setTitle = AppContextStorage(state=> state.currentPage.setTitle);
 
-  const list = () => (
-    <Box
-    sx={{width:250}}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <Divider /> 
-      <List>
+  const mapToList =(menus:Menu[]) =>
+    <List>
         {menus.map((item, index) => (
           <ListItem key={`${item.label}-${index}`} disablePadding>
-            <ListItemButton href={item.path}>
+            <ListItemButton onClick={() => {setTitle(item.label); navigateTo(item.path)}}>
               <ListItemIcon>
                 {item.icon}
               </ListItemIcon>
@@ -45,6 +55,18 @@ const LeftSideBar:React.FC<Props> = ({
           </ListItem>
         ))}
       </List>
+
+  const list = () => (
+    <Box
+    sx={{width:250}}
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      {mapToList(homeMenu)}
+      <Divider />
+      {mapToList(sistemaMenus)}
+      <Divider /> 
+      {mapToList(usuarioMenus)}
     </Box>
   );
 

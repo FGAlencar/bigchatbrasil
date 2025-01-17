@@ -5,5 +5,5 @@ export type AppContextPageStorageDefinition = {
 }
 
 export type AppContextStorageDefinition ={
-    currentPage: AppContextPageStorage;
+    currentPage: AppContextPageStorageDefinition;
 }
