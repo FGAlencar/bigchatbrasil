@@ -43,10 +43,10 @@ public class Pessoa implements PersistentEntity<Long>, Serializable {
     private List<ContatoTelefone> contatoTelefones = new ArrayList<>();
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Endereco> enderecos;
+    private List<Endereco> enderecos = new ArrayList<>();;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ContatoEmail> emails;
+    private List<ContatoEmail> emails = new ArrayList<>();;
 
 
 }

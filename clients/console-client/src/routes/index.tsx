@@ -6,23 +6,35 @@ import {
     Navigate,
   } from "react-router-dom";
 import LoginRoutes from './LoginRoutes';
-import { RoutesType } from '../types/Routes';
+import { RoutesType } from '../types/config/RoutesType.d';
 import HomeRoutes from './HomeRoutes'
+import {InternalUsuarioRoutes, ExternalUsuarioRoutes} from './UsuarioRoutes'
+import MainPage from '../pages/default/MainPage';
 
 
-
+const mapToRoute = (route:RoutesType) =>
+    <Route path={route.path} element={route.element}/>
+    
 const IndexRoutes:React.FC = () =>{
-    const mapToRoute = (route:RoutesType) =>
-        <Route path={route.path} element={route.element}/>
+
+    const externalRoutes = [
+        ...LoginRoutes.map(mapToRoute),
+        ...ExternalUsuarioRoutes.map(mapToRoute)
+    ]
+
+    const internalRoutes = [
+        ...InternalUsuarioRoutes.map(mapToRoute),
+        ...HomeRoutes.map(mapToRoute)
+
+    ]
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={(
-                    <Navigate to={'home'}/>
-                )}/>
-                {LoginRoutes.map(mapToRoute)}
-                {HomeRoutes.map(mapToRoute)}
+                <Route path='/' element={<MainPage/>}
+                    children={ internalRoutes }
+                />
+                {externalRoutes}
             </Routes>
         </BrowserRouter>
     ) 

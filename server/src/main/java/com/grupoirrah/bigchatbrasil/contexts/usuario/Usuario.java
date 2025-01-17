@@ -25,7 +25,6 @@ public class Usuario implements PersistentEntity<Long> {
 
     @OneToOne
     @JoinColumn(name = "pessoa", referencedColumnName = "id")
-    @JsonIncludeProperties("id")
     private Pessoa pessoa;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
