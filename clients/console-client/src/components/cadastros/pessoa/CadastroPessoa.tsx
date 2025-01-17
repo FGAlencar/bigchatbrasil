@@ -15,7 +15,8 @@ const rowForFormControl = {
     display:'flex',
     flexDirection:'row',
     gap:'50px',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
+    marginBottom:2
 };
 
 
@@ -59,7 +60,6 @@ const CadastroEnderecoForm:React.FC<CadastroEnderecoFormProp> = ({
     
     return (
         <Box justifyContent={'start'} alignItems={'start'}>
-                <h2>Dados pessoa</h2>
                 <FormControl sx={rowForFormControl}>
                         <InputText 
                             name="rua" 
@@ -111,7 +111,7 @@ const CadastroEnderecoForm:React.FC<CadastroEnderecoFormProp> = ({
                             value={form.correspondencia}
                             onChange={updateForm}/>
                 </FormControl>
-                <Box>
+                <Box display={'flex'} justifyContent={'end'}>
                     <CommonButton onClick={ () => submit()} label={isEdit ? 'Atualizar' : 'Adicionar'}/>
                 </Box>
         </Box>
@@ -172,6 +172,7 @@ const CadastroEndereco:React.FC<CadastroEnderecoProps> = ({
 
 
     return<Box>
+                <h3>Endereços</h3>
         <Box>
             <CadastroEnderecoForm endereco={enderecoForm} onSubmit={onSubmitForm}/>
         </Box>
