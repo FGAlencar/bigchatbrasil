@@ -6,14 +6,15 @@ import { Pagination } from "../../types/config/Pagination";
 import { PlanoServicoService } from "../../services";
 import AlertError from "../../components/user-feedback/alert/AlertError";
 import CommonButton from "../../components/buttons/Button";
+import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
 
 
 
 const PlanoServicoListPage:React.FC = () =>{
+    const navigateTo = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
-    const [showAlert, setShowAlert] = useState<AlertControl>({
-            open:false, title:'', message:''
-        });
+    const [showAlert, setShowAlert] = useState<boolean>(false);
     const [tableData, setTableData] = useState<{
         columns: TableColumn[],
         data?:any[],
@@ -23,26 +24,19 @@ const PlanoServicoListPage:React.FC = () =>{
             { label:'Código', column:'id', renderComponent: (value => <>{value}</>)},
             { label:'Nome', column:'nome',renderComponent: (value => <>{value}</>)},
             { label:'Descrição', column:'descricao',renderComponent: (value => <>{value}</>)},
-            { label: 'Valor', column:'valor',renderComponent: (value => <>R${String(value).replace('.',',')}</>)}
+            { label: 'Valor', column:'valor',renderComponent: (value => <>R${String(Number(value).toFixed(2)).replace('.',',')}</>)}
         ],
-        action: (element:any) => (<CommonButton onClick={() => alert(element.id)} label="Mostrar ID"/>),
+        action: (element:any) => (
+            < div style={{position:'relative',display:'flex', justifyContent:'start', gap:10}}>
+                <CommonButton onClick={() => navigateTo('/servico/'+element.id)} label="Editar"/>
+                <CommonButton onClick={() => PlanoServicoService.remove(element.id)} label="Remover" variant="outlined"/>
+            </div>),
         data:undefined
     })
     
-    const openErrorAlert = (title:string, message:string) =>
-        setShowAlert({
-            title, message, open:true
-        })
-
-    const closeErrorAlert = () =>
-        setShowAlert({
-            title:'', message:'', open:false
-        })
-
-
     const fetchData = (servico?: Partial<PlanoServico>, pagination?: Pagination) =>{
         setLoading(true);
-        closeErrorAlert();
+        setShowAlert(false)
         PlanoServicoService.findAll(servico, pagination)
         .then(response =>{
             setLoading(false)
@@ -50,7 +44,7 @@ const PlanoServicoListPage:React.FC = () =>{
         })
         .catch(err =>{
             setLoading(false)
-            openErrorAlert('Ops...', 'Não foi possível consultar os dados. Entre em contato com o suporte!')
+            setShowAlert(true)
 
         })
     }
@@ -61,18 +55,21 @@ const PlanoServicoListPage:React.FC = () =>{
         // eslint-disable-next-line
     },[])
 
-    const mountErrorAlert = () => 
-        <AlertError title={showAlert.title} message={showAlert.message}/>
-
     return(
-        <>  <LoadingSpinner loading={loading}/>
-        
-            <CommonTable 
-                columns={tableData.columns} 
-                data={tableData.data ?? []}
-                action={tableData.action}
-            />
-            {showAlert && showAlert.open &&  mountErrorAlert()}
+        <>  
+            <Box display={'flex'} flexDirection={'column'}>
+                <LoadingSpinner loading={loading}/>
+                
+                <CommonTable 
+                    columns={tableData.columns} 
+                    data={tableData.data ?? []}
+                    action={tableData.action}
+                />
+                <Box position='absolute' width={'97%'} paddingBottom={8}bottom={0} display={'flex'} justifyContent={'end'}>
+                    <CommonButton onClick={() => navigateTo('/servico/novo')}label="Novo"/>
+                </Box>
+                {showAlert && <AlertError/>}
+            </Box>
         </>
     )
 }

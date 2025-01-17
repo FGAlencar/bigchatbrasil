@@ -10,6 +10,7 @@ import LoadingSpinner from "../../components/user-feedback/LoadingSpinner";
 import { UsuarioService } from "../../services";
 import { useNavigate } from "react-router-dom";
 import UsuarioStograge from "../../storages/UsuarioStorage";
+import AlertError from "../../components/user-feedback/alert/AlertError";
 
 
 
@@ -32,6 +33,7 @@ const RegistroUsuarioPage:React.FC = () =>{
     const usuarioStorage = UsuarioStograge();
     const navigator = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
+    const [showAlert, setShowAlert] = useState<boolean>(false);
     const [form, setForm] = useState<UsuarioForm>({
         planos:[],
         pessoa:{ativo:true, enderecos:[], contatoTelefones:[], emails:[]}, 
@@ -48,7 +50,7 @@ const RegistroUsuarioPage:React.FC = () =>{
 
     const submit = ()=>{
         setLoading(true);
-        console.log(form)
+        setShowAlert(false)
         UsuarioService.registrar(form as Usuario)
             .then(({data}) => {
                 usuarioStorage.login(data)
@@ -57,7 +59,7 @@ const RegistroUsuarioPage:React.FC = () =>{
             })
             .catch((err) => {
                 setLoading(false)
-                alert(err);
+                setShowAlert(true)
             })
     }
 
@@ -81,6 +83,7 @@ const RegistroUsuarioPage:React.FC = () =>{
                         <CommonButton variant='outlined' onClick={goToLoginPage} label="voltar"/>
                     </Box>
                 </Box>
+                {showAlert && <AlertError/>}
             </FullScreenFlex>
         </>
     )

@@ -1,5 +1,5 @@
 export type PlanoServico={
-    id: number;
+    id?: number;
     nome: string,
     descricao: string,
     valor: number,
