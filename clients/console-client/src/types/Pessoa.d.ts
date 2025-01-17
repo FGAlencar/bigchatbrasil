@@ -6,4 +6,9 @@ export type Pessoa = {
     cpfCnpj:string,
     ativo:boolean,
     responsavel: Pessoa;
+    contatoTelefones: any[],
+    enderecos: any[],
+    emails:[]
 }
+
+export type PessoaForm=Partial<Pessoa>

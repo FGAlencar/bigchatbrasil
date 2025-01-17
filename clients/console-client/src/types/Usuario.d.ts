@@ -1,8 +1,23 @@
-import { Pessoa } from "./Pessoa"
+import { Pessoa, PessoaForm } from "./Pessoa"
 import { PlanoContratado } from "./PlanoContratado"
 
 export type Usuario ={
     id:number,
     planos: PlanoContratado[],
-    pessoa: Pessoa[]
+    pessoa: Pessoa,
+    dadosLogin:DadosLogin
 }
+
+export type DadosLogin={
+    login:string,
+    senha:string,
+    emailRedefinicao:string
+}
+
+export type UsuarioForm = {
+    pessoa?:PessoaForm,
+    dadosLogin?: DadosLoginForm
+    planos?:Partial<PlanoContratado>[]
+}
+
+export type DadosLoginForm= Partial<DadosLogin>

@@ -1,8 +1,7 @@
 import React, { CSSProperties, useState } from 'react'
 import FullScreenFlex from '../../components/screen/FullScreeFlex';
-import { Box } from '@mui/material';
+import { Box, FormControl } from '@mui/material';
 import InputText from '../../components/inputs/InputText';
-import { Col, Row } from 'react-bootstrap';
 import CommonButton from '../../components/buttons/Button';
 import InputPassword from '../../components/inputs/InputPassword';
 import LoadingSpinner from '../../components/user-feedback/LoadingSpinner';
@@ -13,11 +12,16 @@ import { useNavigate } from 'react-router-dom';
 
 const MotherBoxStyle:CSSProperties={
     height:'50vh',
-    width:'30vw',
+    width:'20vw',
     margin:'auto',
     display:'flex',
     justifyContent:'center',
-    alignItems:'center'
+    flexDirection:'column',
+    alignItems:'center',
+    borderRadius:'10px',
+    borderWidth:2,
+    borderStyle:'solid',
+    boxShadow:'15px 15px rgba(0,0,0,.5)'
 }
 
 
@@ -30,6 +34,7 @@ const LoginPage:React.FC = () =>{
     const navigate = useNavigate();
     const [form, setFormData] = useState<LoginForm>({});
     const [loading, setLoading] = useState<boolean>(false);
+    
     const updateFormData = (name:string, value: string | boolean) =>
         setFormData({...form, [name]:value})
     
@@ -46,22 +51,38 @@ const LoginPage:React.FC = () =>{
         })
     }   
 
+    const goToNovoUsuarioPage = () => navigate('/usuario/novo')
+
     return(<>
     
             <LoadingSpinner loading={loading}/>
             <FullScreenFlex alignItem='center' justifyContent='center'>
                 <Box style={MotherBoxStyle}>
-                    <Col>
-                        <Row style={{marginBottom:20}}>
-                            <InputText name="login" placeholder='Login' onChange={updateFormData} />
-                        </Row>
-                        <Row style={{marginBottom:20}}>
-                            <InputPassword name="senha" placeholder='Senha' onChange={updateFormData} />
-                        </Row>
-                        <Row >
-                            <CommonButton style={{marginLeft:'30%'}}label='Logar' onClick={() =>{submit(form)}}/>
-                        </Row>
-                    </Col>
+                    <FormControl sx={{display:'flex', justifyContent:'space-between', flexDirection:'column'}}>
+                        <FormControl style={{marginBottom:20}}>
+                            <InputText  
+                                label='Login'
+                                name="login" 
+                                onChange={updateFormData}/>
+                        </FormControl>
+                        <FormControl style={{marginBottom:20}}>
+                            <InputPassword 
+                                    name="senha" 
+                                    label='Senha' 
+                                    onChange={updateFormData} />
+                        </FormControl>
+                        <FormControl>
+                            <CommonButton 
+                                    label='Logar' 
+                                    onClick={() =>{submit(form)}}/>
+                        </FormControl>
+                        <FormControl>
+                        <CommonButton 
+                                variant='text' 
+                                label='Registrar' 
+                                onClick={() => goToNovoUsuarioPage()}/>
+                        </FormControl>
+                    </FormControl>
                 </Box>
             </FullScreenFlex>
             </>
