@@ -7,8 +7,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
@@ -19,7 +17,7 @@ type Props={
 }
 
 const menus = [
-    {label:'Usuário', icon:<AccountCircleIcon/>}
+    {label:'Usuário', icon:<AccountCircleIcon/>, path:''}
 ]   
 
 const LeftSideBar:React.FC<Props> = ({
@@ -38,7 +36,7 @@ const LeftSideBar:React.FC<Props> = ({
       <List>
         {menus.map((item, index) => (
           <ListItem key={`${item.label}-${index}`} disablePadding>
-            <ListItemButton>
+            <ListItemButton href={item.path}>
               <ListItemIcon>
                 {item.icon}
               </ListItemIcon>
