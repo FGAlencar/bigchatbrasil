@@ -9,7 +9,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import UsuarioStograge from '../../../storages/UsuarioStorage';
 import { useNavigate } from 'react-router-dom';
 
-const  TopBar :React.FC = ()  => {
+
+type Props ={
+    toggleDrawer: (open:boolean) =>
+                        (event: React.KeyboardEvent | React.MouseEvent) => void;
+}
+
+const  TopBar :React.FC<Props> = ({
+    toggleDrawer
+})  => {
     const navigateTo = useNavigate();
     const logoutUser = UsuarioStograge(state => state.logout)
     const onClickLogout = () =>{
@@ -27,6 +35,7 @@ const  TopBar :React.FC = ()  => {
                     color="inherit"
                     aria-label="menu"
                     sx={{ mr: 2 }}
+                    onClick={toggleDrawer(true)}
                 >
                     <MenuIcon />
                 </IconButton>

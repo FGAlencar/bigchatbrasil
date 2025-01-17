@@ -20,7 +20,6 @@ const HomePage:React.FC = () =>{
 
     return(
     <>
-        <TopBar/>
     </>
     )
 }
