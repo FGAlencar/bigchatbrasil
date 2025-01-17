@@ -8,6 +8,9 @@ import LoadingSpinner from '../../components/user-feedback/LoadingSpinner';
 import { UsuarioService } from '../../services';
 import { LoginRequest } from '../../types/LoginRequest';
 import { useNavigate } from 'react-router-dom';
+import UserAlert from '../../components/user-feedback/alert/Alert';
+import { AlertCommonProps } from '../../components/user-feedback/alert/alert';
+import AlertError from '../../components/user-feedback/alert/AlertError';
 
 
 const MotherBoxStyle:CSSProperties={
@@ -30,16 +33,36 @@ type LoginForm = {
     senha?: string
 }
 
+type AlertControl = {
+    open:boolean;
+    title: string; 
+    message:string
+}
+
 const LoginPage:React.FC = () =>{
     const navigate = useNavigate();
     const [form, setFormData] = useState<LoginForm>({});
     const [loading, setLoading] = useState<boolean>(false);
+    const [showAlert, setShowAlert] = useState<AlertControl>({
+        open:false, title:'', message:''
+    });
     
     const updateFormData = (name:string, value: string | boolean) =>
         setFormData({...form, [name]:value})
+
+    const openErrorAlert = (title:string, message:string) =>
+        setShowAlert({
+            title, message, open:true
+        })
+
+    const closeErrorAlert = () =>
+        setShowAlert({
+            title:'', message:'', open:false
+        })
     
     const submit = (form:LoginForm )=>{
         setLoading(true)
+        closeErrorAlert()
         UsuarioService.logar(form as LoginRequest)
         .then(() =>{
             setLoading(false)
@@ -47,11 +70,17 @@ const LoginPage:React.FC = () =>{
         })
         .catch((err) => {
             setLoading(false)
-            alert(err)
+            openErrorAlert(
+                'Erro ao logar',
+                'Verifique os dados de login'
+            )
         })
     }   
 
     const goToNovoUsuarioPage = () => navigate('/usuario/novo')
+
+    const mountErrorAlert = () => 
+        <AlertError title={showAlert.title} message={showAlert.message}/>
 
     return(<>
     
@@ -84,6 +113,7 @@ const LoginPage:React.FC = () =>{
                         </FormControl>
                     </FormControl>
                 </Box>
+                {showAlert && showAlert.open && mountErrorAlert()}
             </FullScreenFlex>
             </>
         )
