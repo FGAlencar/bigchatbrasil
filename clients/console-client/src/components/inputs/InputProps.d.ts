@@ -6,6 +6,7 @@ export type InputProps = {
     type?:string;
     value?:any;
     size?:string
+    value?:any,
     onChange: (name:string, value:any) => void;
 }
 

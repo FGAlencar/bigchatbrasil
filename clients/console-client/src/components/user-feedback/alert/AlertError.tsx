@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AlertProps } from "./alert";
 import UserAlert from "./Alert";
 

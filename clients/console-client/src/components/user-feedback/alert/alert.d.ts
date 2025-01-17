@@ -3,7 +3,7 @@ export type AlertCommonProps={
 } & AlertProps;
 
 export type AlertProps ={
-    message: string;
-    title:string;
+    message?: string;
+    title?:string;
     onClose?:() => void;
 };

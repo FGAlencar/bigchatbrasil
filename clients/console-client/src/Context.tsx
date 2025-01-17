@@ -1,6 +1,6 @@
 import axios from "axios";
 import IndexRoutes from "./routes";
-
+import React from 'react';
 
 axios.interceptors.request.use( async config =>{
     const {...newConfig} = config;

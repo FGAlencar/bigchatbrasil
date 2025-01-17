@@ -1,6 +1,6 @@
 import { Usuario } from "../types/Usuario"
 
-export type UsuarioStorage = {
+export type UsuarioStorageDefinition = {
     user?: Usuario;
     lastLogin?: string;
     logs?: string[];

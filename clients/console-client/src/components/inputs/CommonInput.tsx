@@ -1,12 +1,6 @@
-import { FormControl, FormHelperText, Input, InputLabel } from "@mui/material"
+import { FormControl, FormHelperText, TextField } from "@mui/material"
 import { CSSProperties } from "react";
 import { InputProps } from "./InputProps";
-
-
-const style:CSSProperties = {
-
-}
-
 
 
 const CommonInput: React.FC<InputProps>= ({
@@ -16,19 +10,19 @@ const CommonInput: React.FC<InputProps>= ({
     helperText,
     type = 'text',
     size = '100%',
+    value,
     onChange
 }) => {
 
     return (<>
             <FormControl  
                 sx={{width:size}}>
-            { label && <InputLabel htmlFor={`input-${name}`}>{label}</InputLabel>}
-            <Input
+            <TextField
                 name={name}
                 id={`input-${name}`}
-                placeholder={placeholder} 
                 type={type}
-                style={style}
+                label={label}
+                value={value}
                 aria-describedby={helperText ? `input-${name}-helper`: undefined  }
                 onChange={e => onChange(e.target.name, e.target.value)}
             />

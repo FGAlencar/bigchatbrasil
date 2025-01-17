@@ -8,9 +8,8 @@ import LoadingSpinner from '../../components/user-feedback/LoadingSpinner';
 import { UsuarioService } from '../../services';
 import { LoginRequest } from '../../types/LoginRequest';
 import { useNavigate } from 'react-router-dom';
-import UserAlert from '../../components/user-feedback/alert/Alert';
-import { AlertCommonProps } from '../../components/user-feedback/alert/alert';
 import AlertError from '../../components/user-feedback/alert/AlertError';
+import UsuarioStorage from '../../storages/UsuarioStorage';
 
 
 const MotherBoxStyle:CSSProperties={
@@ -33,55 +32,33 @@ type LoginForm = {
     senha?: string
 }
 
-type AlertControl = {
-    open:boolean;
-    title: string; 
-    message:string
-}
 
 const LoginPage:React.FC = () =>{
     const navigate = useNavigate();
     const [form, setFormData] = useState<LoginForm>({});
     const [loading, setLoading] = useState<boolean>(false);
-    const [showAlert, setShowAlert] = useState<AlertControl>({
-        open:false, title:'', message:''
-    });
+    const [showAlert, setShowAlert] = useState<boolean>(false);
+    const {login} = UsuarioStorage()
     
     const updateFormData = (name:string, value: string | boolean) =>
         setFormData({...form, [name]:value})
 
-    const openErrorAlert = (title:string, message:string) =>
-        setShowAlert({
-            title, message, open:true
-        })
-
-    const closeErrorAlert = () =>
-        setShowAlert({
-            title:'', message:'', open:false
-        })
-    
     const submit = (form:LoginForm )=>{
         setLoading(true)
-        closeErrorAlert()
+        setShowAlert(false)
         UsuarioService.logar(form as LoginRequest)
-        .then(() =>{
+        .then(({data}) =>{
+            login(data)
             setLoading(false)
             navigate('/home')
         })
         .catch((err) => {
             setLoading(false)
-            openErrorAlert(
-                'Erro ao logar',
-                'Verifique os dados de login'
-            )
+            setShowAlert(true)
         })
     }   
 
     const goToNovoUsuarioPage = () => navigate('/usuario/novo')
-
-    const mountErrorAlert = () => 
-        <AlertError title={showAlert.title} message={showAlert.message}/>
-
     return(<>
     
             <LoadingSpinner loading={loading}/>
@@ -113,7 +90,7 @@ const LoginPage:React.FC = () =>{
                         </FormControl>
                     </FormControl>
                 </Box>
-                {showAlert && showAlert.open && mountErrorAlert()}
+                {showAlert && <AlertError/>}
             </FullScreenFlex>
             </>
         )

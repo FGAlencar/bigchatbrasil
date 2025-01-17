@@ -1,23 +1,24 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import LocalStorage from './storage-configuration/LocalStoragePersistence';
-import { UsuarioStorage } from '../types/config/UsuarioStorage';
+import { UsuarioStorageDefinition } from '../types/config/UsuarioStorage';
 import { Usuario } from '../types/Usuario';
 
 
 
-const UsuarioStograge = create<UsuarioStorage>()(persist(
+const UsuarioStorage = create<UsuarioStorageDefinition>()(persist(
     (set, get) =>({
         user: undefined,
         lastLogin: undefined,
         logs:[],
-        login: (user:Usuario) => set((state:UsuarioStorage) => ({...state, user, lastLogin: new Date().toISOString()} as UsuarioStorage)),
-        logout: ():void => set((state:UsuarioStorage) => ({...state, user:undefined, lastLogin: undefined})),
+        login: (user:Usuario) => set((state:UsuarioStorageDefinition) => ({...state, user, lastLogin: new Date().toISOString()} as UsuarioStorageDefinition)),
+        logout: ():void => set((state:UsuarioStorageDefinition) => ({...state, user:undefined, lastLogin: undefined})),
         getUser: ():Usuario | undefined => get().user,
         getLastLogin: ():string | undefined => get().lastLogin,
         requireNewLogin: (): boolean => {
             const lastLogin = get().lastLogin
             if( lastLogin === undefined || lastLogin === null) return true
+        
             const lastLoginDate = new Date(lastLogin);
             const diffInMillisecond = new Date().getTime() - lastLoginDate.getTime();
             const diffInSecond = diffInMillisecond / 1000;
@@ -34,4 +35,4 @@ const UsuarioStograge = create<UsuarioStorage>()(persist(
         storage: createJSONStorage(() => LocalStorage)
     }))
 
-export default UsuarioStograge;
+export default UsuarioStorage;
