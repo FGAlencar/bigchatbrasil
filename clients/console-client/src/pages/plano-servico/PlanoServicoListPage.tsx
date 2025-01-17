@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import CommonTable, { TableColumn } from "../../components/table/CommonTable";
 import LoadingSpinner from "../../components/user-feedback/LoadingSpinner";
 import { PlanoServico } from "../../types";
 import { Pagination } from "../../types/config/Pagination";
 import { PlanoServicoService } from "../../services";
 import AlertError from "../../components/user-feedback/alert/AlertError";
+import CommonButton from "../../components/buttons/Button";
 
 
 
@@ -15,13 +16,16 @@ const PlanoServicoListPage:React.FC = () =>{
         });
     const [tableData, setTableData] = useState<{
         columns: TableColumn[],
-        data?:any[]
+        data?:any[],
+        action?:(element:any) => ReactNode
     }>({
         columns:[
-            { label:'Código', column:'id'},
-            { label:'Nome', column:'nome'},
-            { label: 'Valor', column:'valor'}
+            { label:'Código', column:'id', renderComponent: (value => <>{value}</>)},
+            { label:'Nome', column:'nome',renderComponent: (value => <>{value}</>)},
+            { label:'Descrição', column:'descricao',renderComponent: (value => <>{value}</>)},
+            { label: 'Valor', column:'valor',renderComponent: (value => <>R${String(value).replace('.',',')}</>)}
         ],
+        action: (element:any) => (<CommonButton onClick={() => alert(element.id)} label="Mostrar ID"/>),
         data:undefined
     })
     
@@ -67,6 +71,7 @@ const PlanoServicoListPage:React.FC = () =>{
             <CommonTable 
                 columns={tableData.columns} 
                 data={tableData.data ?? []}
+                action={tableData.action}
             />
             {showAlert && showAlert.open &&  mountErrorAlert()}
         </>

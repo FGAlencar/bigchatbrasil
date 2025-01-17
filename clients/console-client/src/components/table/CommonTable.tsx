@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
     TableContainer,
     Table, 
@@ -10,16 +10,18 @@ import {
 } from '@mui/material'
 
 
-export type TableColumn = {label:string, column:string}
+export type TableColumn = {label:string, column:string, renderComponent:(value:any) => ReactNode | undefined}
 type Props={
     columns: TableColumn[];
-    data:any[]
+    data:any[],
+    action?:(element:any) => ReactNode;
 }
 
 
 const CommonTable:React.FC<Props> = ({
     columns,
-    data
+    data,
+    action
 }) =>{
     
     const mapColumnsToHead = (columns: TableColumn[]) => 
@@ -27,14 +29,18 @@ const CommonTable:React.FC<Props> = ({
             {columns.map(column => 
                 <TableCell>{column.label}</TableCell>)
             }
+            {action && <TableCell>Ações</TableCell> }
         </TableRow>
 
     const mapDataToRow = (data:any[]) =>
         data.map(element =>
             <TableRow>
                 {columns.map(column =>
-                    <TableCell>{element[column.column]}</TableCell>
+                    <TableCell>{column.renderComponent(element[column.column])}</TableCell>
                 )}
+                {
+                    action && <TableCell>{action(element)}</TableCell> 
+                }
             </TableRow>
 
         )
