@@ -9,7 +9,7 @@ import LoginRoutes from './LoginRoutes';
 import { RoutesType } from '../types/config/RoutesType.d';
 import HomeRoutes from './HomeRoutes'
 import {InternalUsuarioRoutes, ExternalUsuarioRoutes} from './UsuarioRoutes'
-import MainPage from '../pages/default/MainPage';
+import MainPage from '../pages/main/MainPage';
 
 
 const mapToRoute = (route:RoutesType) =>

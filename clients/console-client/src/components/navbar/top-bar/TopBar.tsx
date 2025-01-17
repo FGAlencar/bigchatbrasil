@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import UsuarioStograge from '../../../storages/UsuarioStorage';
 import { useNavigate } from 'react-router-dom';
+import AppContextStorage from '../../../storages/AppContextStorage';
 
 
 type Props ={
@@ -20,6 +21,7 @@ const  TopBar :React.FC<Props> = ({
 })  => {
     const navigateTo = useNavigate();
     const logoutUser = UsuarioStograge(state => state.logout)
+    const currentPageTitle = AppContextStorage(state => state.currentPage.title)
     const onClickLogout = () =>{
         logoutUser();
         navigateTo('/login')
@@ -40,7 +42,7 @@ const  TopBar :React.FC<Props> = ({
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Big Chat Brasil - Home
+                    Big Chat Brasil - {currentPageTitle}
                 </Typography>
                 <Button color="inherit" onClick={() => onClickLogout()}>Logout</Button>
             </Toolbar>
